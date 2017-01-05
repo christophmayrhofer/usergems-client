@@ -1,0 +1,18 @@
+<template>
+    <require from="../tweet/tweet.html"></require>
+    <require from="../spinner/spinner.html"></require>
+    <div class="loader" if.bind="loading">
+        <spinner></spinner>
+    </div>
+    <div if.bind="!loading" class="spaced">
+        <div class="card infoBox" if.bind="(tweets.length > 0) ? false : true">
+            No tweets available.
+            Please add some Subscriptions.
+        </div>
+        <tweet repeat.for="tweet of tweets"
+               text.bind="tweet.text"
+               username.bind="tweet.username"
+               timestamp.bind="tweet.timestamp">
+        </tweet>
+    </div>
+</template>

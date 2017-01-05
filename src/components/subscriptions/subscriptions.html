@@ -1,0 +1,26 @@
+<template>
+    <require from="../subscription/subscription.html"></require>
+    <require from="../spinner/spinner.html"></require>
+    <div class="loader" if.bind="loading">
+        <spinner></spinner>
+    </div>
+    <div if.bind="!loading" class="spaced">
+        <div class="spaced">
+            <div class="input-field">
+                <input id="newSubscriptionText" type="text" placeholder="Username" value.bind="newSubscriptionText" />
+                <label for="newSubscriptionText">Username</label>
+            </div>
+            <a class="btn" click.trigger="addSubscription()">Subscribe</a>
+        </div>
+        <div class="spaced">
+            <div class="card infoBox" if.bind="(subscriptions.length > 0) ? false : true">
+                You are not subscribed to anybody.
+            </div>
+            <subscription repeat.for="subscription of subscriptions"
+                   id.bind="subscription.id"
+                   username.bind="subscription.username"
+                   delete.call="deleteSubscription(subscription.id)">
+            </subscription>
+        </div>
+    </div>
+</template>
