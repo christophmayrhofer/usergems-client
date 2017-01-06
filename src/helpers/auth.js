@@ -1,15 +1,17 @@
 import { inject } from 'aurelia-framework';
-import store from '../store';
+import config from '../config';
+import state from '../store';
 
-@inject(store)
+@inject(config, state)
 export default class Auth {
-  constructor(state) {
+  constructor(config, state) {
+    this.config = config;
     this.state = state;
     if (this.state.auth) {
       return this.state.auth;
     }
 
-    this.lock = new Auth0Lock('AqbSSDV0WpHXbu0Re4GpvVvJ5sDZqgnh', 'navio.eu.auth0.com');
+    this.lock = new Auth0Lock(this.config.auth.clientId, this.config.auth.domain);
     this.state.auth = this;
     return this;
   }
@@ -23,7 +25,7 @@ export default class Auth {
         localStorage.setItem('id_token', token);
         this.state.user = profile;
 
-        fetch('http://localhost:3000/initUser', {
+        fetch(`${this.config.apiUrl}initUser`, {
           method: 'POST',
           body: JSON.stringify(profile),
           headers: {

@@ -1,10 +1,10 @@
 <template bindable="id, username, delete">
-    <div class="card">
+    <div class="card spaced">
         <div class="card-content">
-            <h3>${username}</h3>
+            <h5><a href="#/users/${username}">${username}</a></h5>
         </div>
         <div class="card-action">
-            <a class="btn" click.trigger="delete()">Delete</a>
+            <a class="btn red" click.trigger="delete()">Delete</a>
         </div>
     </div>
 </template>

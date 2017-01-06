@@ -10,7 +10,7 @@ const uglifier = require('@easy-webpack/config-uglify');
 const aureliaLoader = require('@easy-webpack/config-aurelia');
 const commonChunksOptimize = require('@easy-webpack/config-common-chunks-simple');
 const globalRegenerator = require('@easy-webpack/config-global-regenerator');
-const globalJQuery = require('@easy-webpack/config-global-jquery');
+// const globalJQuery = require('@easy-webpack/config-global-jquery');
 
 const HotModuleReplacementPlugin = require('webpack').HotModuleReplacementPlugin;
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
@@ -41,7 +41,7 @@ const config = easyWebpack.generateConfig(
       sourceMapFilename: 'scripts/[name].bundle.js.map',
     },
     devServer: {
-      port: 8080,
+      port: 81,
       contentBase: path.join(__dirname, 'build'),
       hot: false,
       inline: true,
@@ -78,7 +78,7 @@ const config = easyWebpack.generateConfig(
   uglifier({ debug: !isProduction }),
   aureliaLoader({ root: rootDir, src: srcDir, title, baseUrl }),
   globalRegenerator(),
-  globalJQuery(),
+  // globalJQuery(),
   commonChunksOptimize({ appChunkName: 'app', firstChunk: 'aureliaBootstrap' })
 );
 

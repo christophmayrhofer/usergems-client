@@ -1,18 +1,25 @@
 <template>
     <require from="../tweet/tweet.html"></require>
-    <require from="../spinner/spinner.html"></require>
-    <div class="loader" if.bind="loading">
-        <spinner></spinner>
-    </div>
-    <div if.bind="!loading" class="spaced">
-        <div class="card infoBox" if.bind="(tweets.length > 0) ? false : true">
-            No tweets available.
-            Please add some Subscriptions.
+    <div class="spaced">
+        <div if.bind="state.user" class="spaced center">
+            <div class="input-field inputWidth">
+                <textarea id="newTweetText" class="materialize-textarea tweetTextbox" autofocus
+                          value.bind="newTweetText" length="140" maxLength="140"></textarea>
+                <label for="newTweetText">New Tweet</label>
+            </div>
+            <a class="btn" click.trigger="sendTweet()">Tweet</a>
         </div>
-        <tweet repeat.for="tweet of tweets"
-               text.bind="tweet.text"
-               username.bind="tweet.username"
-               timestamp.bind="tweet.timestamp">
-        </tweet>
+
+        <div class="spaced">
+            <div class="card infoBox" if.bind="(state.loading || state.feed.length > 0) ? false : true">
+                No tweets available.
+                Please add some Subscriptions.
+            </div>
+            <tweet repeat.for="tweet of state.feed"
+                   text.bind="tweet.text"
+                   username.bind="tweet.username"
+                   timestamp.bind="tweet.timestamp">
+            </tweet>
+        </div>
     </div>
 </template>

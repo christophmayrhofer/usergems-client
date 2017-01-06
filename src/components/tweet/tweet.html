@@ -1,10 +1,12 @@
 <template bindable="text, username, timestamp">
+    <require from="../../helpers/converters/time-ago"></require>
     <div class="card">
         <div class="card-content">
             ${text}
         </div>
         <div class="card-action">
-            <cite>${username}</cite>   <small>${timestamp}</small>
+            <cite><a href="#/users/${username}">${username}</a></cite>
+            <small class="right">${timestamp | timeAgo}</small>
         </div>
     </div>
 </template>

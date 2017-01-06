@@ -2,5 +2,8 @@
     <require from="./app.css"></require>
     <require from="./components/nav-bar/nav-bar"></require>
     <nav-bar router.bind="router"></nav-bar>
+    <div if.bind="state.loading" class="progress">
+        <div class="indeterminate"></div>
+    </div>
     <router-view></router-view>
 </template>

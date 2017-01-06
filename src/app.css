@@ -19,8 +19,36 @@ nav {
     padding: 20px;
 }
 
-.loader {
-    position: absolute;
-    top: 50%;
-    left: 50%;
+.center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.inputWidth {
+    width: 300px;
+ }
+
+input {
+    text-align: center;
+}
+
+.itemBox {
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+textarea.tweetTextbox {
+    min-height: 0px;
+}
+
+.progress {
+    margin: 0px;
+}
+
+.cursor-hand {
+    cursor: hand;
 }

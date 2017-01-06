@@ -1,19 +1,18 @@
 <template bindable="router">
+    <require from="./items.html"></require>
     <nav>
         <div class="nav-wrapper">
-            <a href="#" class="brand-logo">Usergems Twitter</a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li if.bind = "!state.user">
-                    <a click.trigger="auth.login()">Login</a>
-                </li>
-                <div if.bind = "state.user">
-                    <li repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''}">
-                        <a href.bind="row.href">${row.title}</a>
-                    </li>
-                    <li>
-                        <a click.trigger="auth.logout()">Logout (${state.user.username})</a>
-                    </li>
-                </div>
+            <a href="#" class="brand-logo left hide-on-small-and-down">Usergems Twitter</a>
+            <a href="#" class="brand-logo hide-on-med-and-up">Twitter</a>
+
+            <a href="#" data-activates="side-nav" class="button-collapse"><i class="material-icons">menu</i></a>
+
+            <ul id="nav-mobile" class="right hide-on-small-and-down">
+                <items state.bind="state" router.bind="router"></items>
+            </ul>
+
+            <ul class="side-nav" id="side-nav">
+                <items state.bind="state" router.bind="router"></items>
             </ul>
         </div>
     </nav>

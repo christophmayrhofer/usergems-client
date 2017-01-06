@@ -1,19 +1,22 @@
 import { inject } from 'aurelia-framework';
-import store from './store';
+import Auth from './helpers/auth';
+import config from './config';
+import state from './store';
 
-@inject(store)
-export default class App {
-  constructor(state) {
+@inject(config, state)
+export class App {
+  constructor(config, state) {
+    this.config = config;
     this.state = state;
     this.state.user = JSON.parse(localStorage.getItem('profile'));
-    this.state.apiUrl = 'http://localhost:3000/';
+    this.state.auth = new Auth(this.config, this.state);
   }
 
   configureRouter(config, router) {
     this.router = router;
     config.title = 'Usergems Twitter';
     config.map([
-      { route: ['', 'home'],       name: 'home',       moduleId: 'components/home/home', title: 'Home', nav: true },
+      { route: ['', 'users/:username?'],       name: 'users',       moduleId: 'components/users/users', title: 'Users', nav: true },
       { route: 'feed',    name: 'subscriptions',       moduleId: 'components/feed/feed', title: 'Feed', nav: true },
       { route: 'subscriptions',    name: 'subscriptions',       moduleId: 'components/subscriptions/subscriptions', title: 'Subscriptions', nav: true },
     ]);

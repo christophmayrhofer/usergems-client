@@ -1,0 +1,33 @@
+<template>
+    <require from="../tweet/tweet.html"></require>
+
+    <div class="spaced">
+        <div class="spaced center">
+            <div class="input-field inputWidth">
+                <input id="searchUser" type="text" autofocus
+                       input.delegate="usernameAutocomplete() & debounce"
+                       value.bind="searchUser" />
+                <label for="searchUser">Username</label>
+                <ul if.bind="usernameSuggestions.length > 0" class="collection cursor-hand">
+                    <a class="collection-item"
+                       click.delegate="selectUsername($event.target.text)"
+                       repeat.for="username of usernameSuggestions">${username}</a>
+                </ul>
+            </div>
+        </div>
+
+        <div class="spaced">
+            <div class="card infoBox"
+                 if.bind="(!state.loading && searchUser.length === 0
+                            && lastSearchUser === searchUser && state.tweets.length === 0) ? true : false">
+                No tweets available for ${searchUser}
+            </div>
+
+            <tweet repeat.for="tweet of state.tweets"
+                   text.bind="tweet.text"
+                   username.bind="tweet.username"
+                   timestamp.bind="tweet.timestamp">
+            </tweet>
+        </div>
+    </div>
+</template>
