@@ -25,7 +25,7 @@ export default class Auth {
         localStorage.setItem('id_token', token);
         this.state.user = profile;
 
-        fetch(`${this.config.apiUrl}initUser`, {
+        fetch(`${this.config.apiUrl.private}initUser`, {
           method: 'POST',
           body: JSON.stringify(profile),
           headers: {
