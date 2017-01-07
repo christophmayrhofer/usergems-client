@@ -16,7 +16,7 @@ export class App {
     this.router = router;
     config.title = 'Usergems Twitter';
     config.map([
-      { route: ['', 'users/:username?'],       name: 'users',       moduleId: 'components/users/users', title: 'Users', nav: true },
+      { route: ['', 'home/:username?'],       name: 'home',       moduleId: 'components/home/home', title: 'Home', nav: true },
       { route: 'feed',    name: 'subscriptions',       moduleId: 'components/feed/feed', title: 'Feed', nav: true },
       { route: 'subscriptions',    name: 'subscriptions',       moduleId: 'components/subscriptions/subscriptions', title: 'Subscriptions', nav: true },
     ]);

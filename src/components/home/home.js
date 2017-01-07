@@ -21,7 +21,15 @@ export class Users {
     } else{
       this.searchUser = '';
     }
-    this.fetchUserTweets();
+
+    this.searchUser ? this.fetchUserTweets() : this.fetchPublicFeed();
+  }
+
+  async fetchPublicFeed() {
+    this.state.loading = true;
+    const response = await fetch(`${this.config.apiUrl.public}getPublicFeed`);
+    this.state.tweets = await response.json();
+    this.state.loading = false;
   }
 
   async fetchUserTweets() {

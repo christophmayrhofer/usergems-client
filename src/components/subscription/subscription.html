@@ -1,7 +1,7 @@
 <template bindable="id, username, delete">
     <div class="card spaced">
         <div class="card-content">
-            <h5><a href="#/users/${username}">${username}</a></h5>
+            <h5><a href="#/home/${username}">${username}</a></h5>
         </div>
         <div class="card-action">
             <a class="btn red" click.trigger="delete()">Delete</a>

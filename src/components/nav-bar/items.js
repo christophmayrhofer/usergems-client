@@ -6,6 +6,6 @@ export class Items {
 
   logout() {
     this.state.auth.logout();
-    this.router.navigateToRoute('users');
+    this.router.navigateToRoute('home');
   }
 }
